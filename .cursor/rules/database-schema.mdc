@@ -1,0 +1,70 @@
+---
+description: Supabase database schema for the voice app
+alwaysApply: false
+---
+# Database Schema (Supabase / PostgreSQL)
+
+## Tables
+
+### users
+| Column     | Type                     | Notes                                      |
+|------------|--------------------------|---------------------------------------------|
+| id         | uuid (PK)                | DEFAULT gen_random_uuid()                   |
+| name       | varchar NOT NULL          |                                             |
+| email      | varchar NOT NULL UNIQUE   |                                             |
+| role       | varchar NOT NULL          | CHECK: 'admin', 'parent', 'child'           |
+| password   | varchar(6) DEFAULT NULL   | 6-character login password (nullable)       |
+| status     | varchar DEFAULT 'active'  | CHECK: 'active', 'inactive'                 |
+| created_at | timestamptz DEFAULT now() |                                             |
+| updated_at | timestamptz DEFAULT now() |                                             |
+
+### permissions
+Only 3 rows: **fan**, **light**, **door**
+
+| Column      | Type                     | Notes                    |
+|-------------|--------------------------|--------------------------|
+| id          | uuid (PK)                | DEFAULT gen_random_uuid()|
+| name        | varchar NOT NULL UNIQUE   | 'fan', 'light', 'door'  |
+| description | text                     |                          |
+| created_at  | timestamptz DEFAULT now() |                          |
+
+### user_permissions
+Each user has one row per permission with `granted` = true/false.
+
+| Column        | Type                     | Notes                          |
+|---------------|--------------------------|--------------------------------|
+| id            | uuid (PK)                | DEFAULT gen_random_uuid()      |
+| user_id       | uuid FK → users.id       |                                |
+| permission_id | uuid FK → permissions.id |                                |
+| granted       | boolean DEFAULT true     | true = allowed, false = denied |
+| created_at    | timestamptz DEFAULT now() |                                |
+| updated_at    | timestamptz DEFAULT now() |                                |
+
+### voice_recordings
+| Column        | Type                     | Notes                                              |
+|---------------|--------------------------|----------------------------------------------------|
+| id            | uuid (PK)                | DEFAULT gen_random_uuid()                           |
+| user_id       | uuid FK → users.id       |                                                    |
+| storage_path  | varchar NOT NULL          | Legacy; new uploads use audio_base64 instead        |
+| audio_base64  | text                     | Base64-encoded 16kHz mono WAV audio data            |
+| duration_ms   | integer                  |                                                    |
+| language      | varchar                  |                                                    |
+| transcription | text                     |                                                    |
+| command_type  | varchar                  |                                                    |
+| status        | varchar DEFAULT 'uploaded'| CHECK: 'uploaded','processing','processed','failed' |
+| created_at    | timestamptz DEFAULT now() |                                                    |
+| processed_at  | timestamptz               |                                                    |
+| section_id    | varchar                  |                                                    |
+| section_title | varchar                  |                                                    |
+| repetition    | integer                  |                                                    |
+
+## Permission Model
+- There are exactly 3 permissions: `fan`, `light`, `door`
+- Each user gets a row in `user_permissions` per permission
+- `granted = true` means the user can control that device
+- `granted = false` means access is denied
+- If no row exists for a user+permission, default is `true`
+
+## Supabase Client
+- URL: configured in `src/lib/supabase.js`
+- The app uses `@supabase/supabase-js` via React Native

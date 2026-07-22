@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Voice Control App",
+    "slug": "voice-control-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "extra": {
+      "supabaseUrl": "https://pedknxydwbotscpxsqbz.supabase.co",
+      "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBlZGtueHlkd2JvdHNjcHhzcWJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMTM5ODEsImV4cCI6MjA3NzU4OTk4MX0.z3MBkThcv3vSgMOuHK_g3HnzUdyXhm71ArrwGAQEU7A",
+      "recordingsBucket": "recordings",
+      "eas": {
+        "projectId": "99d77ddb-a82b-4ed3-92b7-6137b78f9eca"
+      }
+    },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.voicecontrol.app",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "This app records audio to upload voice commands.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.voicecontrol.app",
+      "permissions": [
+        "RECORD_AUDIO"
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

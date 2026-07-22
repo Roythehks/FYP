@@ -1,0 +1,8 @@
+---
+description: Automatically push to GitHub after every commit
+alwaysApply: true
+---
+
+# Auto-Push After Commit
+
+After creating any git commit, always run `git push` immediately without asking the user for confirmation.
