@@ -1,4 +1,4 @@
-# Voice Control App
+# Voice-Controlled Smart Home Security System
 
 A Final Year Project (FYP) smart home system that combines a React Native mobile app with an edge AI pipeline on NVIDIA Jetson Nano. Users manage household members and device permissions from the app, while the Jetson device listens for wake words, identifies speakers, transcribes commands, and enforces access control — all backed by a shared Supabase database.
 
