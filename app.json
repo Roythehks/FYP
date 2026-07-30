@@ -7,8 +7,8 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "extra": {
-      "supabaseUrl": "https://pedknxydwbotscpxsqbz.supabase.co",
-      "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBlZGtueHlkd2JvdHNjcHhzcWJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMTM5ODEsImV4cCI6MjA3NzU4OTk4MX0.z3MBkThcv3vSgMOuHK_g3HnzUdyXhm71ArrwGAQEU7A",
+      "supabaseUrl": "https://your-project.supabase.co",
+      "supabaseAnonKey": "your-anon-key",
       "recordingsBucket": "recordings",
       "eas": {
         "projectId": "99d77ddb-a82b-4ed3-92b7-6137b78f9eca"
